@@ -59,6 +59,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="max-w-4xl mx-auto px-5 py-6">
+        {tab === 'contenido' && <AdminContenidoPage />}
         {tab === 'rituals' && <AdminRituals />}
         {tab === 'challenges' && <AdminChallenges />}
         {tab === 'community' && <AdminCommunity />}
