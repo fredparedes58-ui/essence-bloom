@@ -131,6 +131,32 @@ export default function AuthPage() {
             <motion.button whileTap={{ scale: 0.97 }} onClick={handleLogin} disabled={loading || !email || !password} className="w-full py-4 rounded-2xl bg-gradient-ritual font-body font-semibold text-primary-foreground shadow-soft disabled:opacity-40">
               {loading ? 'Entrando...' : 'Entrar'}
             </motion.button>
+            <button onClick={() => { setError(''); setForgotSent(false); setMode('forgot'); }} className="w-full text-center text-sm font-body text-muted-foreground mt-4 hover:text-primary transition-colors">
+              ¿Olvidaste tu contraseña?
+            </button>
+          </motion.div>
+        )}
+
+        {mode === 'forgot' && (
+          <motion.div key="forgot" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} className="w-full max-w-sm">
+            <button onClick={() => setMode('login')} className="text-sm font-body text-muted-foreground mb-6">← Volver</button>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-2">Recuperar contraseña</h2>
+            <p className="text-sm font-body text-muted-foreground mb-6">Te enviaremos un enlace para restablecer tu contraseña</p>
+            {error && <p className="text-sm font-body text-destructive mb-4 p-3 rounded-xl bg-destructive/10">{error}</p>}
+            {forgotSent ? (
+              <div className="text-center p-6 rounded-2xl bg-primary/10">
+                <p className="text-4xl mb-3">📧</p>
+                <p className="font-body text-foreground font-medium mb-1">¡Revisa tu correo!</p>
+                <p className="font-body text-sm text-muted-foreground">Hemos enviado un enlace de recuperación a <strong>{email}</strong></p>
+              </div>
+            ) : (
+              <>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" className="w-full px-5 py-4 rounded-2xl bg-petal border-2 border-border font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors mb-6" autoFocus />
+                <motion.button whileTap={{ scale: 0.97 }} onClick={handleForgotPassword} disabled={loading || !email} className="w-full py-4 rounded-2xl bg-gradient-ritual font-body font-semibold text-primary-foreground shadow-soft disabled:opacity-40">
+                  {loading ? 'Enviando...' : 'Enviar enlace'}
+                </motion.button>
+              </>
+            )}
           </motion.div>
         )}
 
