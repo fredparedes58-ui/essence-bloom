@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import AdminContenidoPage from '@/pages/AdminContenidoPage';
 import { useAuth } from '@/contexts/AuthContext';
 import { 
   useAllRituals, useRitualSteps, useAdminCreateRitual, useAdminUpdateRitual, useAdminDeleteRitual,
@@ -7,16 +8,17 @@ import {
   useChallenges, useAdminCreateChallenge, useAdminUpdateChallenge, useAdminDeleteChallenge,
   useCommunityPosts, useAdminDeletePost, useAdminProfiles,
 } from '@/hooks/useSupabase';
-import { Plus, Trash2, Edit2, Save, X, ChevronDown, Users, Sparkles, MessageCircle, Trophy, LogOut } from 'lucide-react';
+import { Plus, Trash2, Edit2, Save, X, ChevronDown, Users, Sparkles, MessageCircle, Trophy, LogOut, Palette } from 'lucide-react';
 import type { Database } from '@/integrations/supabase/types';
 
-type Tab = 'rituals' | 'challenges' | 'community' | 'users';
+type Tab = 'rituals' | 'challenges' | 'community' | 'users' | 'contenido';
 
 export default function AdminDashboard() {
   const { signOut, profile } = useAuth();
-  const [tab, setTab] = useState<Tab>('rituals');
+  const [tab, setTab] = useState<Tab>('contenido');
 
   const tabs: { value: Tab; label: string; icon: any }[] = [
+    { value: 'contenido', label: 'Contenido', icon: Palette },
     { value: 'rituals', label: 'Rituales', icon: Sparkles },
     { value: 'challenges', label: 'Retos', icon: Trophy },
     { value: 'community', label: 'Comunidad', icon: MessageCircle },
@@ -57,6 +59,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="max-w-4xl mx-auto px-5 py-6">
+        {tab === 'contenido' && <AdminContenidoPage />}
         {tab === 'rituals' && <AdminRituals />}
         {tab === 'challenges' && <AdminChallenges />}
         {tab === 'community' && <AdminCommunity />}
