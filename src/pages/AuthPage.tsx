@@ -71,6 +71,17 @@ export default function AuthPage() {
     setLoading(false);
   };
 
+  const handleForgotPassword = async () => {
+    setError('');
+    setLoading(true);
+    const { error } = await (await import('@/integrations/supabase/client')).supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    if (error) setError(error.message);
+    else setForgotSent(true);
+    setLoading(false);
+  };
+
   const handleQuizAnswer = (arch: Archetype) => {
     const newScores = { ...scores, [arch]: (scores[arch] || 0) + 1 };
     setScores(newScores);
