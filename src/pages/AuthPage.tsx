@@ -50,12 +50,13 @@ const questions: QuizQ[] = [
 
 export default function AuthPage() {
   const { signUp, signIn } = useAuth();
-  const [mode, setMode] = useState<'welcome' | 'login' | 'register-info' | 'register-quiz' | 'register-result'>('welcome');
+  const [mode, setMode] = useState<'welcome' | 'login' | 'register-info' | 'register-quiz' | 'register-result' | 'forgot'>('welcome');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [forgotSent, setForgotSent] = useState(false);
 
   // Quiz state
   const [currentQ, setCurrentQ] = useState(0);
