@@ -8,7 +8,7 @@ import {
   useChallenges, useAdminCreateChallenge, useAdminUpdateChallenge, useAdminDeleteChallenge,
   useCommunityPosts, useAdminDeletePost, useAdminProfiles,
 } from '@/hooks/useSupabase';
-import { Plus, Trash2, Edit2, Save, X, ChevronDown, Users, Sparkles, MessageCircle, Trophy, LogOut } from 'lucide-react';
+import { Plus, Trash2, Edit2, Save, X, ChevronDown, Users, Sparkles, MessageCircle, Trophy, LogOut, Palette } from 'lucide-react';
 import type { Database } from '@/integrations/supabase/types';
 
 type Tab = 'rituals' | 'challenges' | 'community' | 'users';
