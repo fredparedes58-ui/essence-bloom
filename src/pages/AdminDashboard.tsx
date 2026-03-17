@@ -11,13 +11,14 @@ import {
 import { Plus, Trash2, Edit2, Save, X, ChevronDown, Users, Sparkles, MessageCircle, Trophy, LogOut, Palette } from 'lucide-react';
 import type { Database } from '@/integrations/supabase/types';
 
-type Tab = 'rituals' | 'challenges' | 'community' | 'users';
+type Tab = 'rituals' | 'challenges' | 'community' | 'users' | 'contenido';
 
 export default function AdminDashboard() {
   const { signOut, profile } = useAuth();
-  const [tab, setTab] = useState<Tab>('rituals');
+  const [tab, setTab] = useState<Tab>('contenido');
 
   const tabs: { value: Tab; label: string; icon: any }[] = [
+    { value: 'contenido', label: 'Contenido', icon: Palette },
     { value: 'rituals', label: 'Rituales', icon: Sparkles },
     { value: 'challenges', label: 'Retos', icon: Trophy },
     { value: 'community', label: 'Comunidad', icon: MessageCircle },
