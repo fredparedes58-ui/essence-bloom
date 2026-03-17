@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import AdminContenidoPage from '@/pages/AdminContenidoPage';
 import { useAuth } from '@/contexts/AuthContext';
 import { 
   useAllRituals, useRitualSteps, useAdminCreateRitual, useAdminUpdateRitual, useAdminDeleteRitual,
